@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities{
+.btn-1 {
+    @apply inline-block cursor-pointer px-6 whitespace-nowrap py-4 bg-lightgreen text-black  border-black hover:bg-yellow hover:text-white relative -top-1 -left-1;
+    transition:all ease 0.3s;
+}
+
+.btn-2 {
+    @apply inline-block cursor-pointer px-6 whitespace-nowrap py-4 bg-lightgreen text-black border-black hover:bg-blue hover:text-green relative -top-1 -left-1;
+    transition:all ease 0.3s;
+}
+
+.btn-1:hover, .btn-2:hover {
+    @apply top-0 left-0;
+}
+
+.btn-1:after {
+    content:'';
+    @apply border border-black absolute top-1 left-1 -bottom-1 -right-1;
+    transition:all ease 0.3s;
+}
+
+.btn-1:hover:after {
+    @apply inset-0 border-black;
+}
+
+.btn-2:after {
+    content:'';
+    @apply border absolute top-1 left-1 -bottom-1 -right-1;
+    transition:all ease 0.3s;
+}
+
+.btn-2:hover:after {
+    @apply inset-0 
+}
+
+.banner:after {
+    @apply bg-no-repeat absolute bg-left-bottom left-0 right-0 h-24;
+    content:'';
+    bottom:-45px;
+    background-image:url(https://raw.githubusercontent.com/emfaizan/tailwind-ecommerce-app/fd6468b80684b8495fd475216bfee406195b5d1c/assets/images/line-1.svg);
+}
+} 

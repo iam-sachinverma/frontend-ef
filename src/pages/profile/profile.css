@@ -1,0 +1,10 @@
+.profile{
+    background-attachment: fixed;
+    background-size: fit;
+    }
+    
+    .wrap{
+    background-color: #e8fcff;
+    opacity: 1;
+    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #ffffff 180px ), repeating-linear-gradient( #FFFFFF, #b4fbca );
+    }
