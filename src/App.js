@@ -2,7 +2,7 @@ import { Routes as Switch, Route } from 'react-router-dom';
 import loadable from "@loadable/component";
 // import Login from './pages/auth/login'
 // import Signup from './pages/auth/signup'
-import Home from './pages/home/home'
+ import Home from './pages/home/home'
 // import Shop from './pages/shop/Shop';
 import { Search } from './components/search/search';
 import ProductsPage from './pages/shop/ProductsPage';
@@ -26,6 +26,9 @@ import Loader from './components/loader/loader';
 import { ForgetPassword, ResetPassword } from './pages/auth/ForgetPassword';
 import PrivacyPolicy from './misc/PrivacyPolicy';
 import ReturnPolicy from './misc/ReturnPolicy';
+import Team from './misc/Team';
+import ErrorPage from './misc/404';
+import { getCartState } from './redux/apiCalls';
 
 const Login = loadable(() => import("./pages/auth/login"), {
   fallback: <Loader/>
@@ -33,9 +36,12 @@ const Login = loadable(() => import("./pages/auth/login"), {
 const Signup = loadable(() => import("./pages/auth/signup"), {
   fallback: <Loader />
 });
-const Shop = loadable(() => import("./pages/shop/Shop"), {
-  fallback: <Loader />
-});
+//const Home = loadable(() => import("./pages/home/home"), {
+//  fallback: <Loader />
+//});
+// const Shop = loadable(() => import("./pages/shop/Shop"), {
+//   fallback: <Loader />
+// });
 const OrderSum = loadable(() => import("./pages/profile/orderSummary"), {
   fallback: <Loader />
 });
@@ -45,9 +51,9 @@ const About = loadable(() => import("./pages/about/about"), {
 const ProductView = loadable(() => import("./components/Product/ProductView"), {
   fallback: <Loader />
 });
-// const Profile = loadable(() => import("./pages/profile/profile"), {
-//   fallback: <Loader />
-// });
+//  const Profile = loadable(() => import("./pages/profile/profile"), {
+//    fallback: <Loader />
+//  });
 function App() {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user.currentUser)
@@ -59,6 +65,7 @@ function App() {
             dispatch(loginSuccess(user));
             // console.log(res.data);
             dispatch(addressUpdate(res.data?.addresses));
+                  getCartState(dispatch, user._id);
 
           } else {
             dispatch(logOut());
@@ -77,12 +84,15 @@ function App() {
 
   return (
     <div>
-      <ToastContainer />
+      <ToastContainer
+        autoClose={1500}
+      />
       <div className="sticky top-0 z-30">
         <Header></Header>
       </div>
       <Switch>
         <Route path="/" element={<Home />}></Route>
+        <Route path="*" element={<ErrorPage />}></Route>
         <Route path="/shop" element={<ProductsPage />}></Route>
         <Route path="/shop/:category" element={<ProductsPage />}></Route>
         <Route path="/login" element={<Login />}></Route>
@@ -92,6 +102,7 @@ function App() {
           element={<ResetPassword />}
         ></Route>
         <Route path="/signup" element={<Signup />}></Route>
+        <Route path="/team" element={<Team />}></Route>
         <Route path="/search" element={<ProductsPage />}></Route>
         <Route path="/products/:category" element={<ProductsPage />}></Route>
         <Route path="/product/:id" element={<ProductView />}></Route>

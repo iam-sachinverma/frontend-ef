@@ -26,6 +26,7 @@ export const Profile = () => {
     };
     fetchStates();
   }, []);
+  
 
   const {
     register,

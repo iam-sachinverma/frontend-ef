@@ -9,10 +9,11 @@ import { ProductWrapper } from "../../components/Product/ProductWrapper";
 // import { Product } from "../../components/Product/Product";
 import Slider from "../../components/carousel/carousel";
 import "react-toastify/dist/ReactToastify.css";
+import ProductHorizontalView from "../../components/Product/ProductCarousel/ProductHorizontalView";
 
 
 
-const Home = () =>{
+const Home = () => {
     const slideData = [
       {
         index: 0,
@@ -37,26 +38,28 @@ const Home = () =>{
       },
     ];
     return (
-        <div>
-            <div className="p-1">
-            {/* <Hero /> */}
-            <Hero/>
-            </div>
-            <div className="mx-5 my-3 justify-items-center lg:relative lg:inset-y-0 lg:max-w-7xl lg:mx-auto lg:w-full lg:flex-grow-1 overflow-x-hidden">
-                <span className="text-4xl bg-beige p-4">Categories</span>
-            <Slider heading="Example Slider" slides={slideData} />
-                <Recommended/>
-                <OurPicks/>
-            </div>
-            <ProductWrapper sort={"newest"}></ProductWrapper>
-            <div className="flex flex-col items-center">
-            <h1 className="mb-4 text-3xl xl:text-4xl font-semibold leading-7 xl:leading-9 text-gray-800 dark:text-black underline">Testimonials</h1>
-                <Testimonials></Testimonials>
-            </div>   
-               <Footer/>  
+      <div>
+        <div >
+          {/* <Hero /> */}
+          <Hero />
         </div>
-        
-    )
+        <ProductHorizontalView />
+        <div className="mx-5 my-3 justify-items-center lg:relative lg:inset-y-0 lg:max-w-7xl lg:mx-auto lg:w-full lg:flex-grow-1 overflow-x-hidden">
+          <span className="text-4xl bg-beige p-4">Categories</span>
+          <Slider heading="Example Slider" slides={slideData} />
+          {/* <Recommended /> */}
+          <OurPicks />
+        </div>
+        <ProductWrapper sort={"newest"}></ProductWrapper>
+        <div className="flex flex-col items-center">
+          <h1 className="mb-4 text-3xl xl:text-4xl font-semibold leading-7 xl:leading-9 text-gray-800 dark:text-black underline">
+            Testimonials
+          </h1>
+          <Testimonials></Testimonials>
+        </div>
+        <Footer />
+      </div>
+    );
 }
 
 export default Home;

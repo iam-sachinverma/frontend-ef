@@ -1,7 +1,7 @@
 // import axios from "axios";
 // import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/apiCalls";
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 
 
 const Login = () => {
-
+  const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -19,11 +19,12 @@ const Login = () => {
   useEffect(() => {
     if(user !== null){
       navigate("/");
-    }else{
+    } else {
       return
     }
   })
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm(); 
+  console.log(location.state);
 
   // const dbAuth = async (token, user) => {
   //   await axios.post(
@@ -44,7 +45,7 @@ const Login = () => {
   const loginHandler = async (event) => {
     event.preventDefault();
     const body = { email, password }
-    login(dispatch, body, `users/signin`)
+    login(dispatch, body, `users/signin`, navigate, location?.state);
    }
 
   // const handleClick = async (event) => {
@@ -566,7 +567,7 @@ const Login = () => {
                             type="submit"
                             style={{ transition: "all .15s ease" }}
                           >
-                            create account ?
+                            Create Account ?
                           </button>
                         </Link>
                       </div>

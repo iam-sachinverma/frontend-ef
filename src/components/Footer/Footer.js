@@ -14,7 +14,7 @@ export default function Footer(){
                     href="/"
                   >
                     <img className="h-12" src={Logo} alt="" width="auto" />
-                    Ecofreaky
+                    EcoFreaky
                   </a>
                   <p className="max-w-xs text-white  font-sans">
                     Only platform to connect ecofreaks.
@@ -110,7 +110,7 @@ export default function Footer(){
                         <li className="mb-8">
                           <a
                             className="text-white hover:text-gray-400"
-                            href="#"
+                            href="/team"
                           >
                             Team
                           </a>
@@ -185,30 +185,26 @@ export default function Footer(){
                 All rights reserved &copy; Ecofreaky 2021
               </p>
               <div className="flex w-full md:w-auto">
-                <a className="mr-8" href="https://www.facebook.com/EcoFreaky">
-                  <img
-                    className="h-7"
-                    src="https://img.icons8.com/color/48/000000/facebook-circled--v5.png"
-                    alt="ecofreaky facebook"
-                  />
-                </a>
-                <a className="mr-8" href="https://www.instagram.com/ecofreaky/">
-                  <img
-                    className="h-6"
-                    src="https://i.ibb.co/2St7HJC/instagram-1.png"
-                    alt="ecofreaky instagram"
-                  />
-                </a>
-                <a
-                  className="mr-8"
-                  href="https://www.youtube.com/channel/UCkVypisBUrIxwn0IzF4mVsw"
-                >
-                  <img
-                    className="h-6"
-                    src="https://img.icons8.com/color/48/000000/youtube-play.png"
-                    alt="ecofreaky youtube_ecofreaky_channel"
-                  />
-                </a>
+                <ul className="flex ml-1 lg:px-2 text-white">
+                  <li className="mr-2 shadow-md shadow-slate-500 rounded-full w-6 h-6 bg-indigo-600">
+                    <a
+                      className="pt-2 ml-1 mb-2 px-1 fa fa-md fa-facebook"
+                      href="https://www.facebook.com/EcoFreaky"
+                    ></a>
+                  </li>
+                  <li className="mr-2 inline-flex items-center justify-center shadow-md shadow-[#d62976] rounded-full w-6 h-6 bg-gradient-to-tr from-[#feda75] via-[#d62976] to-[#4f5bd5]">
+                    <a
+                      className="p-1 fa fa-md fa-instagram"
+                      href="https://www.instagram.com/ecofreaky"
+                    ></a>
+                  </li>
+                  <li className="shadow-md shadow-red-700 inline-flex items-center justify-center rounded-full w-6 h-6 px-1 bg-red-600">
+                    <a
+                      className="p-1 fa fa-md fa-youtube"
+                      href="https://www.youtube.com/channel/UCkVypisBUrIxwn0IzF4mVsw"
+                    ></a>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

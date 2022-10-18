@@ -13,7 +13,7 @@ export const Search = () => {
               onChange={(e) => setSearch(e.target.value)}
               type="text"
               placeholder="   Search for products"
-              className="rounded-full flex-1 sm:px-1 md:px-4 lg:px-6 py-4 text-gray-700 focus:outline-none"
+              className="rounded-full flex-1 px-4 sm:px-1 md:px-4 lg:px-6 py-4 text-gray-700 focus:outline-none"
             />
             <Link to="/search" state={search}>
               <button className="backdrop-blur-xl text-black rounded-full font-semibold px-2 lg:px-8 py-4 bg-opacity-10 focus:outline-none">

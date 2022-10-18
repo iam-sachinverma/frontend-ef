@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import { toast } from "react-toastify";
-import { auth } from "../../firebase";
+// import { auth } from "../../firebase";
 import 'react-toastify/dist/ReactToastify.min.css';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+// import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { loginStart, loginFailure, loginSuccess } from "../../redux/userRedux"; 
 import { login } from "../../redux/apiCalls";
@@ -20,6 +20,7 @@ const SignUp = () => {
   const dispatch = useDispatch()
   const [user, setUser] = useState({});
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const navigate = useNavigate();
 
   const dbAuth = async (token) => {
     const data = await axios.post(
@@ -66,7 +67,7 @@ const SignUp = () => {
 
   const loginHandler = async () => {
     const body = { name, email, password }
-    login(dispatch, body, `users/register`)
+    login(dispatch, body, `users/register`, navigate, "cart")
     // console.log(body);
    }
 

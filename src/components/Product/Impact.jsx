@@ -2,8 +2,8 @@ import React from 'react'
 
 const Impact = ({content}) => {
   return (
-    <section className="bg-gray-100 text-gray-800">
-      <div className="container flex flex-col-reverse mx-auto lg:flex-row">
+    <section className="px-14 bg-gray-100 text-gray-800">
+      <div className="container flex flex-col-reverse mx-auto lg:flex-row items-center justify-items-center">
         <div className="flex flex-col px-6 py-8 space-y-6 rounded-lg shadow-lg sm:p-8 lg:p-12 lg:w-1/2 xl:w-2/5 bg-blue text-lightgreen">
           <h1 className="px-6 text-2xl">"Impact on environment":</h1>
           {content ? (
@@ -44,6 +44,7 @@ const Impact = ({content}) => {
         <div className="lg:w-1/2 xl:w-3/5 bg-gray-100">
           <div className="flex items-center justify-center p-4 md:p-8 lg:p-12">
             <img
+              loading='lazy'
               src="https://images.unsplash.com/photo-1561990986-c31dbb3cb368?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTQ2fHxlbnZpcm9ubWVudHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60/640x480/"
               alt=""
               className="rounded-lg shadow-lg bg-gray-500 aspect-video sm:min-h-96"

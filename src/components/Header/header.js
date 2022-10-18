@@ -362,20 +362,22 @@ export default function Header() {
 
               <div className="border-t border-gray-200 py-6 px-4 space-y-6">
                 <div className="flow-root">
-                  <a
-                    href="/login"
-                    className="-m-2 p-2 block font-medium text-gray-900"
-                  >
-                    Sign in
-                  </a>
+                  <Link to="/login" state={"home"}>
+                    {
+                      userLogged === null && <button className="-m-2 p-2 block font-medium text-gray-900">
+                      Sign in
+                    </button>
+                    }
+                  </Link>
                 </div>
                 <div className="flow-root">
-                  <a
-                    href="/signup"
-                    className="-m-2 p-2 block font-medium text-gray-900"
-                  >
-                    Create account
-                  </a>
+                  <Link to="/signup" state={"home"}>
+                    {
+                      userLogged === null && <button className="-m-2 p-2 block font-medium text-gray-900">
+                      Create account
+                    </button>
+                    }
+                  </Link>
                 </div>
               </div>
             </div>
@@ -423,28 +425,32 @@ export default function Header() {
             </ul>
           </div> */}
           <div className="grid grid-cols-2 w-full">
-            <div className="flex items-start  w=full">
-              <p className="bg-yellow h-10 flex justify-between content-end items-center truncate sm:justify-between text-sm font-medium text-white px-4 sm:px-6 lg:px-8">
-                Free delivery on orders above ₹1000
-              </p>
+            <div className="flex items-start  w-full">
+              <marquee
+                direction="left"
+                className="h-10 flex justify-between content-end items-center truncate sm:justify-between text-sm font-medium text-white px-4 sm:px-6 lg:px-8"
+              >
+                ✔ Free delivery on orders above ₹999 | 🎍 Register to sell on
+                EcoFreaky | 🌍 Marketplace for enviornment friendly products.
+              </marquee>
             </div>
             <div className="p-2 grid items-end justify-items-end mx-2">
-              <ul className="flex lg:px-2">
-                <li className="rounded-full border-b h-full">
+              <ul className="flex ml-1 lg:px-2">
+                <li className="mr-2 shadow-md shadow-slate-500 rounded-full w-6 h-6 bg-indigo-600">
                   <a
-                    className="mx-2 fa fa-lg fa-facebook"
+                    className="pt-3 ml-1 mb-2 px-1 fa fa-md fa-facebook"
                     href="https://www.facebook.com/EcoFreaky"
                   ></a>
                 </li>
-                <li className="rounded-full border-b h-full">
+                <li className="mr-2 inline-flex items-center justify-center shadow-md shadow-[#d62976] rounded-full w-6 h-6 bg-gradient-to-tr from-[#feda75] via-[#d62976] to-[#4f5bd5]">
                   <a
-                    className="mx-2 fa fa-lg fa-instagram"
+                    className="p-1 fa fa-md fa-instagram"
                     href="https://www.instagram.com/ecofreaky"
                   ></a>
                 </li>
-                <li className="rounded-full border-b h-full">
+                <li className="shadow-md shadow-red-700 inline-flex items-center justify-center rounded-full w-6 h-6 px-1 bg-red-600">
                   <a
-                    className="mx-2 fa fa-lg fa-youtube hidden"
+                    className="p-1 fa fa-md fa-youtube"
                     href="https://www.youtube.com/channel/UCkVypisBUrIxwn0IzF4mVsw"
                   ></a>
                 </li>
@@ -748,12 +754,11 @@ export default function Header() {
                   </div>
                 ) : (
                   <div className="hidden ml-4 lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-4">
-                    <a
-                      href="/Login"
-                      className="text-sm font-medium text-white hover:text-gray-800"
-                    >
-                      Sign in
-                    </a>
+                    <Link to="/login" state={"home"}>
+                      <button className="font-medium text-white">
+                        Sign in
+                      </button>
+                    </Link>
                     <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
                   </div>
                 )}
@@ -769,7 +774,6 @@ export default function Header() {
                       className="flex-shrink-0 h-6 w-6 text-white group-hover:text-gray-500"
                       aria-hidden="true"
                     />
-
                     <span className="sr-only">items in cart, view bag</span>
                   </Link>
                 </div>

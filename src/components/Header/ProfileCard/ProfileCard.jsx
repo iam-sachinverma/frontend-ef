@@ -28,7 +28,6 @@ export default function ProfileCard() {
                 {/* <UserAvatar size="72" src={userLogged.photoUrl} name={!userLogged.name  ? userLogged.email : userLogged.name}></UserAvatar> */}
 
                 <div className="ml-4">
-                    <h3 className="text-sm">{userLogged.name}</h3>
 
                     <dl className=" space-y-1 m-2 p-2 text-xs text-white">
                         { userLogged.name ?

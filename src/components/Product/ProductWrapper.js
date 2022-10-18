@@ -5,9 +5,9 @@ import styled from 'styled-components';
 import { publicRequest } from '../../requestMethods';
 import Loader from '../loader/loader';
 import Product from './Product';
+import ProductGrid from './ProductGrid/ProductGrid';
 
 const Container = styled.div`
-    padding: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -58,7 +58,6 @@ export const ProductWrapper = ({ categories, filters, sort, search }) => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        console.log(categories);
         const response = await publicRequest.get(!categories ? `products` : `products?cat=${categories}`);
         setProducts(response.data);
       } catch (error) {
@@ -67,6 +66,7 @@ export const ProductWrapper = ({ categories, filters, sort, search }) => {
     }
     getProducts();
   }, [categories]);
+
 
   useEffect(() => {
     const getSearchProducts = async () => {
@@ -96,25 +96,37 @@ export const ProductWrapper = ({ categories, filters, sort, search }) => {
 
   useEffect(() => {
     if (sort === 'newest') {
-      setFilteredProducts((prev) => [...prev].sort((a, b) => a.createdAt - b.createdAt))
+      setFilteredProducts((prev) =>
+        [...prev].sort(
+          (a, b) => +new Date(a.createdAt) - +new Date(b.createdAt)
+        )
+      );
+      setProducts((prev) => [...prev].sort(
+        (a, b) => +new Date(a.createdAt) - +new Date(b.createdAt)
+      ));
     } else if (sort === 'asc') {
       setFilteredProducts((prev) => [...prev].sort((a, b) => a.pprice - b.pprice))
+      setProducts((prev) => [...prev].sort((a, b) => a.pprice - b.pprice))
     } else {
       setFilteredProducts((prev) => [...prev].sort((a, b) => b.pprice - a.pprice))
+      setProducts((prev) => [...prev].sort((a, b) => b.pprice - a.pprice))
     }
   }, [sort])
   return (
-    <Container>{
-      loading ? <Loader/> :
-      categories ? filteredProducts.map((item) => (
-      <Product products={item} key={item._id}></Product>
-    )
-    ) :
-      products.map((item) => (
-        <Product products={item} key={item._id}></Product>
-      )
-      )
-    }
+    <Container>
+      {
+        !products || (!filteredProducts && <Loader />)
+      }
+      {categories || filteredProducts ? (
+        <ProductGrid products={filteredProducts}></ProductGrid> ||
+        !categories ? (
+          <ProductGrid products={products}></ProductGrid>
+        ) : (
+          <ProductGrid products={products}></ProductGrid>
+        )
+      ) : (
+        <ProductGrid products={products}></ProductGrid>
+      )}
     </Container>
   );
 };

@@ -63,7 +63,7 @@ import Loader from "../loader/loader";
 // `;
 
 const Product = ({ products }) => {
-  const arr = products.image.map(item => item.url);
+  const arr = products?.image.map(item => item.url);
   // console.log(arr[0]);
   // return (
   //   <Container classNameName="border">

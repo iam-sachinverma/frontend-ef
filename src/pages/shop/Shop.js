@@ -72,7 +72,7 @@ const Option = styled.option``;
           </Select>
         </Filter>
       </FilterContainer>
-          <ProductWrapper />
+          <ProductWrapper type={"grid"} />
         </div>
     )
   }

@@ -10,15 +10,25 @@ import {
 
   } from './orderRedux'
 import { Navigate } from "react-router-dom";
-import { emptyCart } from "./cartRedux";
+import { emptyCart, getCart } from "./cartRedux";
 
 
-export const login = async (dispatch, user, endpoint) => {
+export const login = async (dispatch, user, endpoint, navigate, context) => {
     dispatch(loginStart());
     try {
       const res = await publicRequest.post(endpoint, user);
       dispatch(loginSuccess(res.data));
       toast.success("Login Successful");
+      if (context === "cart") {
+        navigate("/cart");
+        window.location.reload();
+      } if (context === "home") {
+        navigate("/");
+        window.location.reload();
+      }
+      else if (context === "profile") {
+        navigate("/");
+      }
     } catch (err) {
     console.log(err)
       dispatch(loginFailure());
@@ -27,7 +37,7 @@ export const login = async (dispatch, user, endpoint) => {
   };
 
 export const logout = async (dispatch, user) => {
-    dispatch(logOut(user=null))  
+    dispatch(logOut(user=null))
 }
 
 export const userUpdate = async (userId, data, navigate) => {
@@ -95,7 +105,7 @@ export const passChange = async (id, token, pass) => {
   }
 };
 
-export const cartSave = async (data) => { 
+export const cartSave = async (data) => {
   try {
     await userRequest.post('/cart', data).then(res => {
       if(res.status === 200){
@@ -103,9 +113,9 @@ export const cartSave = async (data) => {
       }else{
         toast.error("Something went wrong");
       }
-    }); 
+    });
   } catch (error) {
-    
+
   }
 }
 
@@ -119,7 +129,7 @@ export const cartSave = async (data) => {
     }
   };
 
-export const newProducts = async () => { 
+export const newProducts = async () => {
   try {
     await userRequest.get('products?new').then(res => {
       if (res.status === 200) {
@@ -128,7 +138,7 @@ export const newProducts = async () => {
       }else{
         toast.error("Unable to fetch products");
       }
-    }); 
+    });
   } catch (error) {
     console.log(error);
     toast.error(error.message);
@@ -146,18 +156,18 @@ export const newProducts = async () => {
             }
         });
     } catch (error) {
-        
+
     }
   }
 
-export const verifySession = async (id, dispatch, navigate) => { 
+export const verifySession = async (id, dispatch, navigate) => {
   try {
-    await userRequest.post(`session/verify/${id}`).then(res => { 
+    await userRequest.post(`session/verify/${id}`).then(res => {
       if(res.status === 200){
         if (res.data.paid === true) {
           toast.success("Order Placed");
           dispatch(emptyCart());
-          setTimeout(() => { 
+          setTimeout(() => {
             navigate("/orders");
           }, 3000);
           return true;
@@ -168,7 +178,7 @@ export const verifySession = async (id, dispatch, navigate) => {
     });
   } catch (error) {
     console.log(error);
-    verifySession(id, dispatch);
+    await verifySession(id, dispatch);
   }
 }
 
@@ -195,7 +205,7 @@ export const leaveReview = async (_prodid, data) => {
   }
 }
 
-export const checkoutSession = async (cartItems, userid, order) => { 
+export const checkoutSession = async (cartItems, userid, order) => {
   try {
     console.log(userid);
     await userRequest.post(`session/checkout`, {
@@ -216,6 +226,47 @@ export const checkoutSession = async (cartItems, userid, order) => {
       });
   } catch (error) {
     return error;
+  }
+}
+
+export const getCartState = async (dispatch, id) => {
+  try {
+    await userRequest.get(`cart/${id}`).then(res => {
+        // console.log(res);
+        dispatch(getCart(res.data));
+    }).catch(err => {
+      console.log(err);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export const saveCart = async (data) => {
+  try {
+    await userRequest.put(`cart/save`, data).then(res => {
+      if (res.status === 200) {
+        console.log(res.data);
+      }else{
+        toast.error("Something went wrong");
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const deleteCart = async (id) => {
+  try {
+    await userRequest.delete(`cart/delete/${id}`).then(res => {
+      if (res.status === 200) {
+        console.log(res.data);
+      }else{
+        toast.error("Something went wrong");
+      }
+    });
+  } catch (error) {
+    console.log(error);
   }
 }
 
