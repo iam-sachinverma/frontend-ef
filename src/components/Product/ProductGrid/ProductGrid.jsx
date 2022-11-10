@@ -196,8 +196,13 @@ function ProductGrid({ products }) {
             {products.map((product) => (
               <a
                 key={product._id}
-                href={`/product/${product._id}`}
-                className="border-transparent w-full rounded-sm shadow-sm bg-beige overflow-hidden"
+                href={product.stock > 0 ? `/product/${product._id}` : "#"}
+                // className="border-transparent w-full rounded-sm shadow-sm bg-beige overflow-hidden"
+                className={
+                  product.stock > 0
+                    ? "border-transparent w-full rounded-sm shadow-sm bg-beige overflow-hidden"
+                    : "border-transparent w-full rounded-sm shadow-sm bg-beige overflow-hidden cursor-not-allowed"
+                }
               >
                 <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden">
                   <img
@@ -206,18 +211,30 @@ function ProductGrid({ products }) {
                     className="absolute w-full object-contain object-center p-4"
                   />
                 </div>
+                {product.stock > 0 ? (
+                  ""
+                ) : (
+                  <p className="text-center text-red-600">
+                    Currently Out of Stock
+                  </p>
+                )}
+
                 <div className="flex flex-col items-start justify-items-center px-4">
-                  <h3 className="text-sm text-gray-700 my-2">
+                  <h3 className="text-sm text-blue font-medium text-gray-900 my-2">
                     {product.pname}
                   </h3>
-                  <p className="text-xl my-1 text-blue font-medium text-gray-900">
-                    ₹{product.pprice}
-                  </p>
-                  {product.aprice && (
-                    <p className="mt-1 text-xs line-through text-blue font-medium text-gray-900">
-                      ₹{product.aprice}
+
+                  <div className="flex flex-row">
+                    <p className="text-lg my-1 text-blue font-medium text-gray-900">
+                      ₹{product.pprice}
                     </p>
-                  )}
+                    {product.aprice && (
+                      <p className="mt-1 ml-3 text-lg line-through text-slate-400 font-medium text-gray-900">
+                        ₹{product.aprice}
+                      </p>
+                    )}
+                  </div>
+
                   <span className="text-black bg-white p-2 items-center justify-center w-full text-sm inline-flex my-2 border">
                     <small className="uppercase text-sm text-blue">
                       View Product
@@ -227,6 +244,7 @@ function ProductGrid({ products }) {
                     </span>
                   </span>
                 </div>
+                <span class="absolute -bottom-1 right-1/2 w-0 transition-all h-1 bg-yellow-400"></span>
               </a>
             ))}
           </div>

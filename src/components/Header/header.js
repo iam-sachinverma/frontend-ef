@@ -40,19 +40,98 @@ const navigation = {
       ],
       sections: [
         {
-          id: "clothing",
-          name: "Clothing",
-          href: "/products/clothing",
+          id: "mens-fashion",
+          name: "Mens Fashion",
+          href: "/products/mens-fashion",
+          subSections: [
+            { id: "mens-shirts", name: "Shirts", href: "/products/mens-shirt" },
+            {
+              id: "mens-tshirts",
+              name: "T-Shirts",
+              href: "/products/mens-tshirt",
+            },
+            {
+              id: "mens-bags-wallets",
+              name: "Bags & Wallets",
+              href: "/products/mens-bags-wallets",
+            },
+            { id: "mens-shoes", name: "Shoes", href: "/products/mens-shoes" },
+            {
+              id: "mens-accessories",
+              name: "Accessories",
+              href: "/products/mens-accessories",
+            },
+          ],
         },
         {
-          id: "footwear",
-          name: "Footwear",
-          href: "/products/footwear",
+          id: "womens-fashion",
+          name: "Womens Fashion",
+          href: "/products/womens-fashion",
+          subSections: [
+            {
+              id: "womens-dresses",
+              name: "Dresses",
+              href: "/products/womens-dresses",
+            },
+            { id: "womens-tops", name: "Tops", href: "/products/womens-tops" },
+            {
+              id: "womens-t-shirts",
+              name: "T-Shirts",
+              href: "/products/womens-t-shirts",
+            },
+            {
+              id: "womens-shirts",
+              name: "Shirts",
+              href: "/products/womens-shirts",
+            },
+            {
+              id: "womens-jewellery",
+              name: "Jewellery",
+              href: "/products/womens-jewellery",
+            },
+            {
+              id: "womens-handbags",
+              name: "Bags",
+              href: "/products/womens-handbags",
+            },
+            {
+              id: "womens-shoes",
+              name: "Shoes",
+              href: "/products/womens-shoes",
+            },
+            {
+              id: "womens-accessories",
+              name: "Accessories",
+              href: "/products/womens-accessories",
+            },
+          ],
         },
         {
-          id: "accessories",
-          name: "Accessories",
-          href: "/products/accessories",
+          id: "kids-new-borns",
+          name: "Kids & New Borns",
+          href: "/products/kids-new-borns",
+          subSections: [
+            {
+              id: "kids-top-wear",
+              name: "Top Wear",
+              href: "/products/kids-top-wear",
+            },
+            {
+              id: "kids-bottom-wear",
+              name: "Bottom Wear",
+              href: "/products/kids-bottom-wear",
+            },
+            {
+              id: "kids-diapering-needs",
+              name: "Diapering Needs",
+              href: "/products/kids-diapering-needs",
+            },
+            {
+              id: "kids-accessories",
+              name: "Accessories",
+              href: "/products/kids-accessories",
+            },
+          ],
         },
       ],
     },
@@ -581,6 +660,7 @@ export default function Header() {
                                                   {section.name}
                                                 </a>
                                               </li>
+                                              <br></br>
                                             </ul>
                                             {/* <ul
                                             role="list"

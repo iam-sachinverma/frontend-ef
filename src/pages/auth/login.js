@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { loginFailure } from "../../redux/userRedux";
 
+import { ErrorMessage } from "@hookform/error-message";
+
 import { login } from "../../redux/apiCalls";
 
 const Login = () => {
@@ -18,7 +20,6 @@ const Login = () => {
 
   const user = useSelector((state) => state.user.currentUser);
   const errorMessage = useSelector((state) => state.user.errorMessage);
-  console.log(errorMessage);
 
   useEffect(() => {
     if (user !== null) {
@@ -36,7 +37,9 @@ const Login = () => {
     watch,
     formState: { errors },
   } = useForm();
-  console.log(location.state);
+  // console.log(location.state);
+
+  console.log(errors);
 
   // const dbAuth = async (token, user) => {
   //   await axios.post(
@@ -538,17 +541,24 @@ const Login = () => {
                           Password
                         </label>
                         <input
-                          {...register("password", { required: true })}
+                          {...register("password", {
+                            required: "This is required.",
+                          })}
                           type="password"
                           className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                           placeholder="Password"
                           onChange={(e) => setPassword(e.target.value)}
-                          style={{ transition: "all .15s ease" }}
+                          // style={{ transition: "all .15s ease" }}
                         />
                         <div className="text-rose-500 mt-1">
                           {errors.password?.type === "required" &&
                             "Please enter password"}
                         </div>
+                        {/* <ErrorMessage
+                          errors={errors}
+                          name="password"
+                          render={({ message }) => <p>{message}</p>}
+                        /> */}
                       </div>
 
                       {/* Server-Side Error */}
@@ -583,18 +593,20 @@ const Login = () => {
                         >
                           Sign In
                         </button>
-                        <hr className="m-6 border-b-1 border-gray-400" />
-                        <Link to="/Signup">
-                          <button
-                            className="bg-blue text-lightgreen bg-opacity-80 active:bg-blue text-sm font-bold uppercase px-6 py-3 mt-1 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
-                            type="submit"
-                            style={{ transition: "all .15s ease" }}
-                          >
-                            Create Account ?
-                          </button>
-                        </Link>
                       </div>
                     </form>
+
+                    <hr className="m-6 border-b-1 border-gray-400" />
+
+                    <Link to="/Signup">
+                      <button
+                        className="bg-blue text-lightgreen bg-opacity-80 active:bg-blue text-sm font-bold uppercase px-6 py-3 mt-1 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
+                        type="button"
+                        style={{ transition: "all .15s ease" }}
+                      >
+                        Create Account ?
+                      </button>
+                    </Link>
 
                     <div className="w-1/2 pt-2 px-1">
                       <a

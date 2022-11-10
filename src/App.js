@@ -30,6 +30,7 @@ import Team from "./misc/Team";
 import ErrorPage from "./misc/404";
 import { getCartState } from "./redux/apiCalls";
 import UserProfile from "./pages/myaccount/userProfile";
+import OrderSummary from "./pages/myaccount/orderSummary";
 
 const Login = loadable(() => import("./pages/auth/login"), {
   fallback: <Loader />,
@@ -87,7 +88,7 @@ function App() {
 
   return (
     <div>
-      <ToastContainer autoClose={1500} />
+      <ToastContainer autoClose={100} />
       <div className="sticky top-0 z-30">
         <Header></Header>
       </div>
@@ -109,7 +110,6 @@ function App() {
         <Route path="/product/:id" element={<ProductView />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
         <Route path="/address" element={<Profile />}></Route>
-        <Route path="/orders" element={<OrderSum />}></Route>
         <Route path="/success" element={<Success />}></Route>
         <Route path="/success/:session_id" element={<Success />}></Route>
         {/* <Route path="*" element={<Error />}></Route> */}
@@ -119,7 +119,9 @@ function App() {
         <Route path="/about" element={<About />}></Route>
 
         {/* User Account Routes */}
-        <Route path="/my-profile" element={<UserProfile />}></Route>
+        <Route path="/account" element={<UserProfile />}></Route>
+        <Route path="/orders" element={<OrderSum />}></Route>
+        <Route path="/orders/:id" element={<OrderSummary />}></Route>
       </Switch>
     </div>
   );

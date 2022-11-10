@@ -50,15 +50,19 @@ const ProductCard = ({ product }) => {
             />
           </div>
           <div className="flex flex-col items-start justify-items-center px-3">
-            <h3 className="text-sm text-gray-700 my-2">{product.pname}</h3>
-            <p className="text-xl my-1 text-blue font-medium text-gray-900">
-              ₹{product.pprice}
-            </p>
-            {product.aprice && (
-              <p className="mt-1 text-xs line-through text-blue font-medium text-gray-900">
-                ₹{product.aprice}
+            <h3 className="text-sm my-2">{product.pname}</h3>
+
+            <div className="flex flex-row">
+              <p className="text-md my-1 text-blue font-medium text-gray-900">
+                ₹{product.pprice}
               </p>
-            )}
+              {product.aprice && (
+                <p className="mt-1 mx-3 text-md line-through text-slate-400 font-medium text-gray-900">
+                  ₹{product.aprice}
+                </p>
+              )}
+            </div>
+
             <span className="text-black bg-white p-2 items-center justify-center w-full text-sm inline-flex my-2 border">
               <small className="uppercase text-sm text-blue">
                 View Product

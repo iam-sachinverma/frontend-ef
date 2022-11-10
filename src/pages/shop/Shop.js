@@ -36,6 +36,7 @@ export default function Shop() {
     const value = e.target.value;
     setFilters([value]);
   };
+
   return (
     <div className="bg-white">
       <FilterContainer>

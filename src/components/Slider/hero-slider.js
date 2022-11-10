@@ -11,7 +11,7 @@ const HeroSlider = ({ slides }) => {
   }, []);
 
   return (
-    <div className="herosection overflow-hidden relative h-56 sm:h-64 xl:h-80 2xl:h-96 mb-1">
+    <div className="herosection overflow-hidden relative h-56 xl:h-80 2xl:h-96 mb-1">
       <Slide slides={slides}></Slide>
       <button className="heroslider__btn slider__btn--left opacity-75">
         &larr;

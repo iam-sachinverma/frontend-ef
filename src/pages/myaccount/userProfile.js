@@ -1,29 +1,35 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { logOut } from "../../redux/userRedux";
+import { getOrders } from "../../redux/apiCalls";
 
-import ProfileTab from "./profileTab";
-import AddressTab from "./addressTab";
-import OrderTab from "./orderTab";
+import ProfileTab from "../../components/userProfile/profileTab";
+import AddressTab from "../../components/userProfile/addressTab";
+import OrderTab from "../../components/userProfile/orderTab";
 
 import Footer from "../../components/Footer/Footer";
-
-import "./userProfile.css";
 
 const UserProfile = () => {
   const [openTab, setOpenTab] = useState(1);
 
   const user = useSelector((state) => state.user.currentUser);
+  const orders = useSelector((state) => state.order.Orders);
+
+  console.log(user);
+  console.log(orders);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (user === null) {
       navigate("/login", { state: "profile" });
+    } else {
+      getOrders(dispatch, user._id);
     }
-  }, [user, navigate]);
+  }, [user, navigate, dispatch]);
 
   const logoutHandler = () => {
     dispatch(logOut());
@@ -183,7 +189,9 @@ const UserProfile = () => {
               </ul>
             </div>
           </div>
-          <div className="col-span-12 lg:col-span-8 md:col-span-8 tabs-content">
+
+          {/* Tab Section */}
+          <section className="col-span-12 lg:col-span-8 md:col-span-8 tabs-content">
             <div className={openTab === 1 ? "block" : "hidden"} id="link1">
               <ProfileTab name={user?.name} email={user?.email}></ProfileTab>
             </div>
@@ -191,77 +199,15 @@ const UserProfile = () => {
               <AddressTab addresses={user?.addresses}></AddressTab>
             </div>
             <div className={openTab === 3 ? "block" : "hidden"} id="link3">
-              <OrderTab></OrderTab>
+              <OrderTab orders={orders}></OrderTab>
             </div>
-          </div>
+          </section>
         </div>
       </div>
 
       {/* Footer */}
       <Footer />
     </>
-    // <div className="container">
-    //   <div className="bloc-tabs">
-    //     <button
-    //       className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
-    //       onClick={() => toggleTab(1)}
-    //     >
-    //       Tab 1
-    //     </button>
-    //     <button
-    //       className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
-    //       onClick={() => toggleTab(2)}
-    //     >
-    //       Tab 2
-    //     </button>
-    //     <button
-    //       className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
-    //       onClick={() => toggleTab(3)}
-    //     >
-    //       Tab 3
-    //     </button>
-    //   </div>
-
-    //   <div className="content-tabs">
-    //     <div
-    //       className={toggleState === 1 ? "content  active-content" : "content"}
-    //     >
-    //       <h2>Content 1</h2>
-    //       <hr />
-    //       <p>
-    //         Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
-    //         praesentium incidunt quia aspernatur quasi quidem facilis quo nihil
-    //         vel voluptatum?
-    //       </p>
-    //     </div>
-
-    //     <div
-    //       className={toggleState === 2 ? "content  active-content" : "content"}
-    //     >
-    //       <h2>Content 2</h2>
-    //       <hr />
-    //       <p>
-    //         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
-    //         voluptatum qui adipisci.
-    //       </p>
-    //     </div>
-
-    //     <div
-    //       className={toggleState === 3 ? "content  active-content" : "content"}
-    //     >
-    //       <h2>Content 3</h2>
-    //       <hr />
-    //       <p>
-    //         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos sed
-    //         nostrum rerum laudantium totam unde adipisci incidunt modi alias!
-    //         Accusamus in quia odit aspernatur provident et ad vel distinctio
-    //         recusandae totam quidem repudiandae omnis veritatis nostrum
-    //         laboriosam architecto optio rem, dignissimos voluptatum beatae
-    //         aperiam voluptatem atque. Beatae rerum dolores sunt.
-    //       </p>
-    //     </div>
-    //   </div>
-    // </div>
   );
 };
 

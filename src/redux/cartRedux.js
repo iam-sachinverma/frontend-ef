@@ -27,7 +27,7 @@ const cartSlice = createSlice({
       );
       if (productIndex >= 0) {
         state.products[productIndex].quantity += 1;
-        // toast.success('Product quantity updated');
+        toast.success("Product quantity updated");
         const total = sum(
           state.products.map((product) => product.pprice * product.quantity)
         );
@@ -73,7 +73,7 @@ const cartSlice = createSlice({
       );
       if (state.products[decreaseIndex].quantity > 1) {
         state.products[decreaseIndex].quantity -= 1;
-        // toast.error("Product quantity decreased");
+        toast.error("Product quantity decreased");
         const total = sum(
           state.products.map((product) => product.pprice * product.quantity)
         );

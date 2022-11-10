@@ -24,6 +24,8 @@ export const login = async (dispatch, user, endpoint, navigate, context) => {
       window.location.reload();
     } else if (context === "profile") {
       navigate("/");
+    } else {
+      navigate("/");
     }
   } catch (err) {
     // console.log(err);
@@ -47,6 +49,44 @@ export const userUpdate = async (userId, data, navigate) => {
         toast.error("Something went wrong");
       }
     });
+  } catch (error) {
+    console.log(error);
+    toast.error(error.message);
+  }
+};
+
+export const addressUpdate = async (userId, addressId, navigate) => {
+  try {
+    await userRequest
+      .put(`users/address/${userId}/${addressId}`)
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success("Address Updated Succesfully");
+          navigate("/cart");
+          window.location.reload();
+        } else {
+          toast.error("Something went wrong");
+        }
+      });
+  } catch (error) {
+    console.log(error);
+    toast.error(error.message);
+  }
+};
+
+export const addressDelete = async (userId, addressId, navigate) => {
+  try {
+    await userRequest
+      .delete(`users/address/delete/${userId}/${addressId}`)
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success("Address Deleted Successfully");
+          navigate("/cart");
+          window.location.reload();
+        } else {
+          toast.error("Something went wrong");
+        }
+      });
   } catch (error) {
     console.log(error);
     toast.error(error.message);

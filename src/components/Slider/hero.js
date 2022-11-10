@@ -9,22 +9,17 @@ import "./hero.scss";
 const slideData = [
   {
     image:
-      "https://ik.imagekit.io/de3sec/assets/Ecofreaky_Slider_lloekQHM-Q?ik-sdk-version=javascript-1.4.3&updatedAt=1665127121422",
+      "https://ik.imagekit.io/2yypqy0us/s3.png?ik-sdk-version=javascript-1.4.3&updatedAt=1668086040121",
     href: "/shop",
   },
   {
     image:
-      "https://images.pexels.com/photos/4202926/pexels-photo-4202926.jpeg?cs=srgb&dl=pexels-karolina-grabowska-4202926.jpg&fm=jpg",
+      "https://ik.imagekit.io/2yypqy0us/s2.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1668086039911",
     href: "/shop",
   },
   {
     image:
-      "https://ik.imagekit.io/de3sec/assets/EcSlide_FooctN1HQ?ik-sdk-version=javascript-1.4.3&updatedAt=1665127713739",
-    href: "/shop",
-  },
-  {
-    image:
-      "https://ik.imagekit.io/de3sec/assets/EcSlide3_OKJWCjkji.png?ik-sdk-version=javascript-1.4.3&updatedAt=1665128244054",
+      "https://ik.imagekit.io/2yypqy0us/s1.png?ik-sdk-version=javascript-1.4.3&updatedAt=1668086040627",
     href: "/shop",
   },
 ];
